@@ -16,7 +16,8 @@ LABEL_COLORS = np.random.default_rng(42).uniform(25, 256, size=(256, 3)).astype(
 
 class VizdoomEnv(gym.Env):
     metadata = {
-        "render.modes": ["human"]
+        "render_modes": ["human"],
+        "render_fps": 50,
     }
     
     def __init__(
@@ -137,7 +138,7 @@ class VizdoomEnv(gym.Env):
 
         self.observation_space = gym.spaces.Dict(spaces)
         
-        assert render_mode is None or render_mode in self.metadata["render.modes"]
+        assert render_mode is None or render_mode in self.metadata["render_modes"]
         self.render_mode = render_mode
         
     def step(self, action):
