@@ -138,8 +138,9 @@ class VizdoomEnv(gym.Env):
 
         self.observation_space = gym.spaces.Dict(spaces)
         
-        assert render_mode is None or render_mode in self.metadata["render_modes"]
-        self.render_mode = render_mode
+        #assert render_mode is None or render_mode in self.metadata["render_modes"]
+        self.render_mode = self.metadata["render_modes"][0] #render_mode
+        print("RENDER MODE", self.render_mode)
         
     def step(self, action):
         assert self.action_space.contains(action), f"{action!r} ({type(action)}) invalid"
