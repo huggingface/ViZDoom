@@ -18,12 +18,7 @@ class VizdoomEnv(gym.Env):
         self,
         level,
         frame_skip=1,
-        render_mode: Optional[str] = None,
     ):
-        
-        metadata = {
-        "render_modes": ["human", "rgb_array", "single_rgb_array"],
-        }
         """
         Base class for Gym interface for ViZDoom. Thanks to https://github.com/shakenes/vizdoomgym
         Child classes are defined in vizdoom_env_definitions.py,
@@ -134,9 +129,7 @@ class VizdoomEnv(gym.Env):
             )
 
         self.observation_space = gym.spaces.Dict(spaces)
-        assert render_mode is None or render_mode in self.metadata["render_modes"]
-        self.render_mode = render_mode
-
+        
     def step(self, action):
         assert self.action_space.contains(action), f"{action!r} ({type(action)}) invalid"
         assert self.state is not None, "Call `reset` before using `step` method."
@@ -228,6 +221,7 @@ class VizdoomEnv(gym.Env):
 
     def render(self, mode="human"):
         render_image = self.__build_human_render_image()
+        print("MODE MODE MODE MODE", mode)
         if mode == "rgb_array":
             return render_image
         elif mode == "human":
