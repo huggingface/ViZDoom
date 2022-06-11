@@ -16,9 +16,15 @@ LABEL_COLORS = np.random.default_rng(42).uniform(25, 256, size=(256, 3)).astype(
 class VizdoomEnv(gym.Env):
     def __init__(
         self,
+        render_mode: Optional[str] = None,
         level,
         frame_skip=1,
     ):
+        
+        metadata = {
+        "render_modes": ["human", "rgb_array", "single_rgb_array"],
+        "render_fps": FPS,
+        }
         """
         Base class for Gym interface for ViZDoom. Thanks to https://github.com/shakenes/vizdoomgym
         Child classes are defined in vizdoom_env_definitions.py,
@@ -129,6 +135,8 @@ class VizdoomEnv(gym.Env):
             )
 
         self.observation_space = gym.spaces.Dict(spaces)
+        assert render_mode is None or render_mode in self.metadata["render_modes"]
+        self.render_mode = render_mode
 
     def step(self, action):
         assert self.action_space.contains(action), f"{action!r} ({type(action)}) invalid"
