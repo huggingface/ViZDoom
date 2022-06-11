@@ -21,8 +21,7 @@ class VizdoomEnv(gym.Env):
         frame_skip=1,
     ):
         metadata = {
-        "render_modes": ["human", "rgb_array", "single_rgb_array"],
-        "render_fps": FPS,
+        "render_modes": ["human", "rgb_array", "single_rgb_array"]
     }
         """
         Base class for Gym interface for ViZDoom. Thanks to https://github.com/shakenes/vizdoomgym
