@@ -136,6 +136,9 @@ class VizdoomEnv(gym.Env):
 
         self.observation_space = gym.spaces.Dict(spaces)
         
+        assert render_mode is None or render_mode in self.metadata["render_modes"]
+        self.render_mode = render_mode
+        
     def step(self, action):
         assert self.action_space.contains(action), f"{action!r} ({type(action)}) invalid"
         assert self.state is not None, "Call `reset` before using `step` method."
