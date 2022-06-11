@@ -23,6 +23,7 @@ class VizdoomEnv(gym.Env):
         self,
         level,
         frame_skip=1,
+        render_mode: Optional[str] = None,
     ):
         
         """
