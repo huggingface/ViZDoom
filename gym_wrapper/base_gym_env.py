@@ -13,12 +13,17 @@ import vizdoom.vizdoom as vzd
 LABEL_COLORS = np.random.default_rng(42).uniform(25, 256, size=(256, 3)).astype(np.uint8)
 
 
+
 class VizdoomEnv(gym.Env):
     def __init__(
         self,
         level,
         frame_skip=1,
     ):
+        metadata = {
+        "render_modes": ["human", "rgb_array", "single_rgb_array"],
+        "render_fps": FPS,
+    }
         """
         Base class for Gym interface for ViZDoom. Thanks to https://github.com/shakenes/vizdoomgym
         Child classes are defined in vizdoom_env_definitions.py,
