@@ -230,6 +230,7 @@ class VizdoomEnv(gym.Env):
         return np.concatenate(image_list, axis=1)
 
     def render(self, mode="human"):
+        assert mode in self.metadata["render_modes"]
         render_image = self.__build_human_render_image()
         print("MODE MODE MODE MODE", mode)
         if mode == "rgb_array":
